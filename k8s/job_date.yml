@@ -1,0 +1,17 @@
+apiVersion: batch/v1          ## The version of the Kubernetes API
+kind: Job                     ## The type of object for jobs
+metadata:
+ name: job-test
+spec:                        ## What state you desire for the object
+ template:
+   metadata:
+     name: job-test
+   spec:
+     containers:
+     - name: job
+       image: busybox                  ##  Image used
+       command:
+       - /bin/sh
+       - -c
+       - echo $(date) start; sleep 1 ; echo $(date) end
+     restartPolicy: OnFailure          ##  Restart Policy in case container failed
